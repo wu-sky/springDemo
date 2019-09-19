@@ -1,0 +1,23 @@
+spring ioc 如何使用
+
+1 引入jar包
+
+2 编写bean实体类
+
+3 编写application.xml, 配置bean setter注入 或 constructor注入, 类对象参数引入(有注解不用写)
+
+4 使用ApplicationContext ac= new ClassPathXmlApplicationContext("application.xml");
+  ac.getBean(xxx.class); 获得对象
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+spring aop aspect oriented program 面向切面编程, 就是在不改动代码的情况下,
+
+在某些类的方法运行前后插一脚
+
+1 导入jar包, spring aop
+
+2 配置application.xml文件 添加
+
+<aop config>
+
+<aop:aspect>
+
+<aop:before>
+
+<aop:after>
+
+

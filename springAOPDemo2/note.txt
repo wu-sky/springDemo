@@ -1,0 +1,9 @@
+spring aop 自动扫描要指定切面的bean
+
+1 要插一脚的aspect类头上写个注解 @Aspect @Component
+
+2 每个bean实体头上写@Component
+
+3 在application.xml中写
+    <context:component-scan base-package="com"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>

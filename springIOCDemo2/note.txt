@@ -1,0 +1,28 @@
+@Component: 基本注解, 标识了一个受 Spring 管理的组件
+
+@Repository: 标识持久层组件（用于标注DAO类）
+
+@Service: 标识服务层(业务层)组件（用于标注业务类）
+
+@Controller: 标识表现层组件（用于标注控制器类）
+
+
+spring ioc 扫描bean
+1 导入jar包
+
+2 在application.xml中写<context:annotation-config />再在各个bean实体头顶写注解
+    Dao 层:@Repository
+    Service 层:@Service
+    view 层:@Controller
+    如果对于开发的类实在不明确到底属于哪个层，可以使用@Component 注解定义。
+
+3 在application.xml中表明  <context:component-scan base-package="com.*"/> 范围在哪里
+
+spring 自动装配, 相当于不用手动去配置注入, 有spring ioc自动帮你找你所需要的类对象, 自动帮你注入
+
+如果需要其他类的对象, 可以不在头顶上面配注解qualifier("")或者resource(" ")
+
+只需要在application.xml中配置<beans  default-autowire="byType/byName"></beans>
+
+
+

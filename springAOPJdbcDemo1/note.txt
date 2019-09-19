@@ -1,0 +1,17 @@
+spring 整合jdbc, 使用c3p0连接池, JdbcTemplate引用DateSource类
+
+1 干掉DbUtil类
+
+2 在application.xml配置数据源,连接池,包括db.properties文件
+
+3 使用JdbcTemplate对象jdbcTemplate来给你查询SQL语句.
+
+这个时候你必须熟悉spring中的某些类, 正如你熟悉jdk中的某些类一样;
+
+org.springframework.context.ApplicationContext;
+org.springframework.context.support.ClassPathXmlApplicationContext;
+org.springframework.jdbc.core.JdbcTemplate
+
+搞spring 到了这里, 开始有了疑惑, 到底什么时候该new, 什么时候不该new呢???
+1    如果你在application.xml中写了bean, 并且引用了某个类的对象, 你就不能new.
+2    如果你在配置文件中写了注入, 最好不要new.

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:congtext="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       "
+default-lazy-init="true" >
+    <congtext:annotation-config></congtext:annotation-config>
+    <!--配置文件application.xml相当于注册本, 找到注册本就能找到对象-->
+
+    <bean id="helloWorld" class="com.entity.HelloWorld" lazy-init="true">
+        <!--优先执行setter注入-->
+        <constructor-arg index="0" name="helloWorld" value="构造器注入, 有种报错" type="java.lang.String"/>
+        <property name="helloWorld" value="wdnmd你还以为时hello world? 值已经被setter注入了"/>
+    </bean>
+
+    <bean id="userDao1" class="com.dao.UserDao1" lazy-init="true"/>
+
+    <bean id="userDao2" class="com.dao.UserDao2" lazy-init="true"/>
+    <!--scope="singleton" 单例模式,com.service.UserService这个类只会创建一个对象
+    如果是scope="prototype"则会创建多个对象-->
+
+    <!--接口是不是一个bean, 如果接口不符合Java bean的规范, 那么这里就不能写接口-->
+  <!--  <bean id="IUserDao" class="com.dao.IUserDao"></bean>-->
+
+    <bean id="userService" class="com.service.UserService"
+          init-method="inti" destroy-method="destroy">
+        <!--要想在这个spring bean初始化和销毁的时候插一脚, 必须给它配方法-->
+
+        <!--属性注入, 在service.UserService这个类中必须有setter getter方法, 否则无法解析和注入,
+        有了注解之后, 底下的属性都可以不要了.-->
+        <!--<property name="userDao" ref="userDao2"></property>-->
+        <!--只要我实现一个接口, 在xml文件里面随便改女朋友, 1可以 2也行-->
+    </bean>
+
+
+
+
+    <bean id="user" class="com.entity.User">
+        <!--构造器注入-->
+        <constructor-arg index="2" type="java.lang.Integer" name="age" value="22"/>
+        <constructor-arg index="1" type="java.lang.String" name="password" value="123"/>
+        <constructor-arg index="0" type="java.lang.String" name="username" value="sky"/>
+    </bean>
+
+</beans>

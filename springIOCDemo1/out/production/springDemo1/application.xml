@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:congtext="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       "
+default-lazy-init="true" >
+    <!--http://www.springframework.org/schema/context/spring-context.xsd 使用注解-->
+<!--全局设定-->
+    <congtext:annotation-config></congtext:annotation-config>
+    <bean id="userDao1" class="com.dao.UserDao1" lazy-init="false"/>
+    <!--lazy-init="true" 使用的时候才加载-->
+    <bean id="userDao2" class="com.dao.UserDao2" lazy-init="false"/>
+    <!--scope="singleton" 单例模式,com.service.UserService这个类只会创建一个对象
+    如果是scope="prototype"则会创建多个对象-->
+
+    <!--接口是不是一个bean, 如果接口不符合Java bean的规范, 那么这里就不能写接口-->
+  <!--  <bean id="IUserDao" class="com.dao.IUserDao"></bean>-->
+
+    <bean id="userService" class="com.service.UserService"
+          init-method="inti" destroy-method="destroy">
+        <!--要想处理这个spring bean初始化和销毁, 必须给它配方法-->
+
+        <!--属性注入, 在service.UserService这个类中必须有setter getter方法, 否则无法解析和注入,
+        有了注解之后, 底下的属性都可以不要了.-->
+        <!--<property name="userDao" ref="userDao2"></property>-->
+        <!--只要我实现一个接口, 在xml文件里面随便改女朋友, 1可以 2也行-->
+    </bean>
+
+    <!--通过构造器注入, 如果这么写,顺序颠倒就会报错, 类型不匹配-->
+    <!--    <bean id="user" class="com.entityty.UserBean">
+        <constructor-arg>
+            <value>22</value>
+        </constructor-arg>
+        <constructor-arg>
+            <value>sky</value>
+        </constructor-arg>
+
+    </bean>-->
+
+    <!--最好标明属性位置和类型, 确保万无一失-->
+    <bean id="user" class="com.entity.User">
+        <constructor-arg index="1" type="java.lang.Integer" value="22"></constructor-arg>
+        <constructor-arg index="0" type="java.lang.String" value="sky"></constructor-arg>
+    </bean>
+
+</beans>

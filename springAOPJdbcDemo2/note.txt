@@ -1,0 +1,22 @@
+spring aop 配置database事务, 面向切面编程, 两个东西, 1事务, 2切面
+
+1 导入jar包, spring base&aop&database
+
+2 在application.xml中配置事务txManager, 事务的方法都是spring在后台给你指定的, 你只需要配置就行了
+
+3 在application.xml中配置事务切面
+
+
+
+注意:根据使用不同的orm框架，事务管理器就不同。使用jdbc/mybatis使用：
+
+  org.springframework.jdbc.datasource.DataSourceTransactionManager
+
+  而使用hibernate,则事务管理器类为：
+
+  org.springframework.orm.hibernate4.HibernateTransactionManager
+
+
+
+
+
